@@ -26,10 +26,12 @@ function calulateBasePay(rate, hours) {
     if (restrictedHours > 40)
         restrictedHours = 40
     let basePay = restrictedHours * job.hourlyRate
+    storeBasePay.push (basePay)
     console.log(`${job.name}: $${basePay}`)
     }
 }
 
+let storeBasePay = []
 
 calulateBasePay(employee.hourlyRate, employee.hoursWorked)
 
@@ -42,8 +44,47 @@ function calulateOvertimePay(rate, hours) {
         overtimeHours -= 40
     else overtimeHours = 0
     let overtimePay = overtimeHours * (job.hourlyRate * 1.5)
+    storeOvertimePay.push (overtimePay)
     console.log(`${job.name}: $${overtimePay}`)
     }
 }
 
+let storeOvertimePay = []
+
 calulateOvertimePay(employee.hourlyRate, employee.hoursWorked)
+
+//console.log(storeBasePay)
+//console.log(storeOvertimePay)
+
+function calculateTotals(base, overtime) {
+    for (let i = 0; i < storeBasePay.length; i++) {
+    let grossPay = (storeBasePay[i] + storeOvertimePay[i])
+    storeGrossPay.push (grossPay)
+    }
+
+}
+
+let storeGrossPay = []
+
+calculateTotals(storeBasePay, storeOvertimePay)
+
+console.log("       ")
+
+function calculateTaxes(grossPay) {
+    for (gross of storeGrossPay) {
+    let afterTax = gross * (1 - .15)
+    storeTotalPay.push (afterTax.toFixed(2))
+    console.log(`$${afterTax.toFixed(2)}`)
+    }
+}
+
+let storeTotalPay = []
+
+calculateTaxes(storeGrossPay)
+
+console.log("       ")
+
+function processPayroll(employee) {
+
+    
+}
