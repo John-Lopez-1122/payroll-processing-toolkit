@@ -85,6 +85,16 @@ calculateTaxes(storeGrossPay)
 console.log("       ")
 
 function processPayroll(employee) {
-
     
+    for (let i = 0; i < storeBasePay.length; i++) {
+    console.log(`${employee[i].name}:`)
+    console.log(`Base Pay: $${storeBasePay[i]}`)
+    console.log(`Overtime Pay: $${storeOvertimePay[i]}`)
+    console.log(`Gross Pay: $${storeGrossPay[i]}`)
+    console.log(`Net Pay: $${storeTotalPay[i]}`)
+    console.log("       ")
+    }
+//    (name(emp), basepay(storebase), overtimepay(storeovertime), grosspay(storegross), netpay(storetotal))
 }
+
+processPayroll(employee)
