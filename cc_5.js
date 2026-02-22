@@ -1,7 +1,7 @@
 let employee = [ // [name, hourlyRate, hoursWorked]
-    {name: "Twilight Sparkle", hourlyRate: 102, hoursWorked: 65},
-    {name: "Spike", hourlyRate: 84, hoursWorked: 26},
-    {name: "Owlowiscious", hourlyRate: 68, hoursWorked: 40}
+    {name: "Joe", hourlyRate: 102, hoursWorked: 65},
+    {name: "Tery", hourlyRate: 84, hoursWorked: 26},
+    {name: "Anthony", hourlyRate: 68, hoursWorked: 40}
 ]
 
 
@@ -53,8 +53,6 @@ function calculateOvertimePay(rate, hours) {
 
 let storeOvertimePay = calculateOvertimePay()
 
-//console.log(storeBasePay)
-//console.log(storeOvertimePay)
 
 function calculateTotals(base, overtime) {
     let storeGrossPay = []
