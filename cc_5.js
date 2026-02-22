@@ -20,7 +20,8 @@ employeeList(employee)
 
 console.log("       ")
 
-function calulateBasePay(rate, hours) {
+function calculateBasePay(rate, hours) {
+    let storeBasePay = []
     for (job of employee) {
     let restrictedHours = job.hoursWorked
     if (restrictedHours > 40)
@@ -29,15 +30,12 @@ function calulateBasePay(rate, hours) {
     storeBasePay.push (basePay)
     console.log(`${job.name}: $${basePay}`)
     }
+    return storeBasePay
 }
 
-let storeBasePay = []
+let storeBasePay = calculateBasePay()
 
-calulateBasePay(employee.hourlyRate, employee.hoursWorked)
-
-console.log("       ")
-
-function calulateOvertimePay(rate, hours) {
+function calculateOvertimePay(rate, hours) {
     for (job of employee) {
     let overtimeHours = job.hoursWorked
     if (overtimeHours > 40)
@@ -51,7 +49,7 @@ function calulateOvertimePay(rate, hours) {
 
 let storeOvertimePay = []
 
-calulateOvertimePay(employee.hourlyRate, employee.hoursWorked)
+calculateOvertimePay(employee.hourlyRate, employee.hoursWorked)
 
 //console.log(storeBasePay)
 //console.log(storeOvertimePay)
