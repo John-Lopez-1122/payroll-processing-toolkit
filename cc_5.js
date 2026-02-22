@@ -18,6 +18,7 @@ function employeeList(write) {
 
 employeeList(employee)
 
+console.log("       ")
 
 function calulateBasePay(rate, hours) {
     for (job of employee) {
@@ -25,9 +26,24 @@ function calulateBasePay(rate, hours) {
     if (restrictedHours > 40)
         restrictedHours = 40
     let basePay = restrictedHours * job.hourlyRate
-    console.log(basePay)
+    console.log(`${job.name}: $${basePay}`)
     }
 }
 
 
 calulateBasePay(employee.hourlyRate, employee.hoursWorked)
+
+console.log("       ")
+
+function calulateOvertimePay(rate, hours) {
+    for (job of employee) {
+    let overtimeHours = job.hoursWorked
+    if (overtimeHours > 40)
+        overtimeHours -= 40
+    else overtimeHours = 0
+    let overtimePay = overtimeHours * (job.hourlyRate * 1.5)
+    console.log(`${job.name}: $${overtimePay}`)
+    }
+}
+
+calulateOvertimePay(employee.hourlyRate, employee.hoursWorked)
