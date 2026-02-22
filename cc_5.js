@@ -35,7 +35,10 @@ function calculateBasePay(rate, hours) {
 
 let storeBasePay = calculateBasePay()
 
+console.log("       ")
+
 function calculateOvertimePay(rate, hours) {
+    let storeOvertimePay = []
     for (job of employee) {
     let overtimeHours = job.hoursWorked
     if (overtimeHours > 40)
@@ -45,54 +48,68 @@ function calculateOvertimePay(rate, hours) {
     storeOvertimePay.push (overtimePay)
     console.log(`${job.name}: $${overtimePay}`)
     }
+    return storeOvertimePay
 }
 
-let storeOvertimePay = []
-
-calculateOvertimePay(employee.hourlyRate, employee.hoursWorked)
+let storeOvertimePay = calculateOvertimePay()
 
 //console.log(storeBasePay)
 //console.log(storeOvertimePay)
 
 function calculateTotals(base, overtime) {
+    let storeGrossPay = []
     for (let i = 0; i < storeBasePay.length; i++) {
     let grossPay = (storeBasePay[i] + storeOvertimePay[i])
     storeGrossPay.push (grossPay)
     }
-
+    return storeGrossPay
 }
 
-let storeGrossPay = []
-
-calculateTotals(storeBasePay, storeOvertimePay)
+let storeGrossPay = calculateTotals(storeBasePay, storeOvertimePay)
 
 console.log("       ")
 
 function calculateTaxes(grossPay) {
+    let storeTotalPay = []
     for (gross of storeGrossPay) {
     let afterTax = gross * (1 - .15)
     storeTotalPay.push (afterTax.toFixed(2))
     console.log(`$${afterTax.toFixed(2)}`)
     }
+    return storeTotalPay
 }
 
-let storeTotalPay = []
+let storeTotalPay = calculateTaxes(storeGrossPay)
 
-calculateTaxes(storeGrossPay)
 
 console.log("       ")
 
-function processPayroll(employee) {
-    
-    for (let i = 0; i < storeBasePay.length; i++) {
-    console.log(`${employee[i].name}:`)
-    console.log(`Base Pay: $${storeBasePay[i]}`)
-    console.log(`Overtime Pay: $${storeOvertimePay[i]}`)
-    console.log(`Gross Pay: $${storeGrossPay[i]}`)
-    console.log(`Net Pay: $${storeTotalPay[i]}`)
+function processPayroll(employee,  base, overtime, gross, net) {
+    let payrollObj = []
+    for (let i = 0; i < employee.length; i++) {
+    let payroll = {
+        name: employee[i].name,
+        basePay: base[i],
+        overtimePay: overtime[i],
+        grossPay: gross[i],
+        netPay: net[i]
+    }
+    payrollObj.push(payroll)
+
+    console.log(`${payroll.name}:`)
+    console.log(`Base Pay: $${payroll.basePay}`)
+    console.log(`Overtime Pay: $${payroll.overtimePay}`)
+    console.log(`Gross Pay: $${payroll.grossPay}`)
+    console.log(`Net Pay: $${payroll.netPay}`)
     console.log("       ")
     }
-//    (name(emp), basepay(storebase), overtimepay(storeovertime), grosspay(storegross), netpay(storetotal))
+ return payrollObj
 }
 
-processPayroll(employee)
+let payrollResults = processPayroll(
+    employee,
+    storeBasePay,
+    storeOvertimePay,
+    storeGrossPay,
+    storeTotalPay
+)
